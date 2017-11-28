@@ -88,5 +88,4 @@ void MS4_manualFill(MagicSquare4* square)
 
 void MS4_fromFile(MagicSquare4 * square, const char * filePath)
 {
-
 }

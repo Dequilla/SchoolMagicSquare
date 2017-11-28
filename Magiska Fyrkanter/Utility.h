@@ -1,7 +1,14 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
+
+//////////////////////
+// Type definitions
+//////////////////////
 
 typedef unsigned int	uint32;
 typedef unsigned short	uint16;
@@ -16,6 +23,11 @@ typedef enum
 	FALSE = 0,
 	TRUE = 1
 } Bool;
+
+
+//////////////////////
+// Helper functions
+//////////////////////
 
 #ifdef _WIN32
 #define CLEAR_CONSOLE() system("cls")
@@ -71,3 +83,10 @@ char** createCArray2D(uint32 sizex, uint32 sizey);
 * @param sizex The number of columns
 */
 void destroyCArray2D(char** warray, uint32 sizex);
+
+/*
+* \brief Reads a file into a c-styled string ending with \0
+* IMPORTANT: Don't forget to free() the returned char* when you are done with it.
+* @param path Path to the file that should be read
+*/
+char* readFileToStr(const char* path);

@@ -48,3 +48,40 @@ void destroyCArray2D(char** warray, uint32 sizex)
 		free(warray[i]);
 	free(warray);
 }
+
+char* readFileToStr(const char* path)
+{
+	char* buffer = 0;
+	uint32 length = 0;
+
+	// The b is just a procation to always assume 1 byte per char(portability)
+	FILE* file = fopen(path, "rb");
+
+	// If file successfully opened
+	if (file)
+	{
+		// Go to end of file
+		fseek(file, 0, SEEK_END);
+
+		// Get the current position in the file stream
+		length = ftell(file);
+
+		// Return to the beginning
+		rewind(file);
+
+		// sizeof(char) redundant but makes it clearer
+		// We add one to append \0 to indicate end of string
+		buffer = malloc((length * sizeof(char)) + 1);
+		
+		// If memory successfully allocated
+		if (buffer)
+		{
+			fread(buffer, sizeof(char), length, file);
+			buffer[length] = '\0';
+		}
+
+		fclose(file);
+	}
+
+	return buffer;
+}
