@@ -4,13 +4,10 @@
 
 int main(int argc, char** argv)
 {
-
 	MagicSquare4 ms;
 	MS4_initSquare(&ms);
 
-	MS4_setSlot(&ms, 0, 0, 'f');
-
-	printf_s("%c \n", ms.slots[0][0]);
+	MS4_manualFill(&ms);
 
 	system("PAUSE");
 	MS4_destroySquare(&ms);

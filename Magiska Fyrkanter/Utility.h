@@ -16,21 +16,35 @@ typedef enum
 	FALSE = 0,
 	TRUE = 1
 } Bool;
+
+#ifdef _WIN32
+#define CLEAR_CONSOLE() system("cls")
+#elif __linux__
+#define CLEAR_CONSOLE() system("clear")
+#else
+#define CLEAR_CONSOLE() printf("\n\n")
+#endif
+
+/*
+* \brief Clears the input buffer of leftovers
+*/
+void clearInputBuffer(void);
+
 /*
 * \breif Completely changes input string to lowercase
 * @param str The input string to lowercase
 */
-void strToLowerCase(char* str);
+void strToLowerCase(char* str); // May not need?
 
 /*
-* \brief Returns true if posx is within 0 to range
+* \brief Returns true if posx is within 0 - range
 * @param posx The variable to be checked
 * @param range The highest value posx can be and still return true
 */
 Bool withinRange1D(uint32 posx, uint32 range);
 
 /*
-* \brief Returns true if posx and posy is within 0 to range
+* \brief Returns true if posx and posy is within 0 - range
 * @param posx The first variable to be checked
 * @param posy The second variable to be checked
 * @param range The highest value posx and posy can be and still return true
@@ -43,3 +57,17 @@ Bool withinRange2D(uint32 posx, uint32 posy, uint32 range);
 * @param validCharacters The string containing all valid characters 
 */
 Bool isValidCharacter(char character, char* validCharacters);
+
+/*
+* \brief Creates and returns a 2D array for chars
+* @param sizex The number of columns
+* @param sizey The number of rows
+*/
+char** createCArray2D(uint32 sizex, uint32 sizey);
+
+/*
+* \brief Free memory of a 2D array for chars
+* @param warray Array to be worked on
+* @param sizex The number of columns
+*/
+void destroyCArray2D(char** warray, uint32 sizex);
