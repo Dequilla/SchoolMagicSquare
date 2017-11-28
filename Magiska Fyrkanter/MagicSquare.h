@@ -1,15 +1,17 @@
 #pragma once
 #include "Utility.h"
+#include "Matrix.h"
 
 #include <stdio.h>
 
 #define MAGIC_SQUARE4_SIZE 4
 
+
 // 4x4 magic square
 typedef struct
 {
-	char** slots;	 // Our 4x4 matrix which we work on
-	char** solution; // Our 4x4 matrix solution
+	MatrixC slots;	  // Our 4x4 matrix which we work on
+	MatrixC solution; // Our 4x4 matrix solution
 } MagicSquare4;
 
 /*

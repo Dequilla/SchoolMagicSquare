@@ -75,7 +75,7 @@ Bool isValidCharacter(char character, char* validCharacters);
 * @param sizex The number of columns
 * @param sizey The number of rows
 */
-char** createCArray2D(uint32 sizex, uint32 sizey);
+char** createCArray2D(uint32 sizex, uint32 sizey); // Create one not based on type?
 
 /*
 * \brief Free memory of a 2D array for chars

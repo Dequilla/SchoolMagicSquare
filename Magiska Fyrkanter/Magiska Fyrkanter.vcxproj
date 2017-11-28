@@ -113,10 +113,12 @@
   <ItemGroup>
     <ClCompile Include="MagicSquare.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Matrix.c" />
     <ClCompile Include="Utility.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MagicSquare.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
