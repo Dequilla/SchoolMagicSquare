@@ -37,6 +37,13 @@ char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row)
 	return '?';
 }
 
+void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
+{
+	// Make sure we are in-bounds
+	if (inRangeMatrixC(matDest, matSrc->nColumns, matSrc->nRows))
+		memcpy(matDest, matSrc, sizeof(char) * matDest->nColumns * matDest->nRows);
+}
+
 void printMatrixC(MatrixC* mat)
 {
 	printf_s("\n  .-------. \n");

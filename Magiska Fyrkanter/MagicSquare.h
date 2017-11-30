@@ -64,6 +64,13 @@ void MS4_printSquare(MagicSquare4* square);
 void MS4_manualFill(MagicSquare4* square);
 
 /*
+* \brief Fills the square with values from a matrix
+* @param dest The magic square to work on
+* @param src The matrix to pick elements from
+*/
+void MS4_fill(MagicSquare4* dest, MatrixC* src);
+
+/*
 * \brief Reads magic square from file
 * @param square The magic square to work on
 * @param filePath The path to the file to read

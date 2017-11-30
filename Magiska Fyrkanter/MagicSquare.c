@@ -63,7 +63,6 @@ void MS4_manualFill(MagicSquare4* square)
 			while (!MS4_isValidCharacter(input));
 
 			MS4_setSlot(square, col, row, input);
-			
 		}
 	}
 	
@@ -71,6 +70,16 @@ void MS4_manualFill(MagicSquare4* square)
 	MS4_printSquare(square);
 }
 
-void MS4_fromFile(MagicSquare4 * square, const char * filePath)
+void MS4_fill(MagicSquare4* dest, MatrixC* src)
+{
+	// Make sure size is valid
+	if (inRangeMatrixC(src, dest->slots.nColumns, dest->slots.nRows))
+	{
+		fillMatrixC(&dest->slots, src);
+		fillMatrixC(&dest->solution, src);
+	}
+}
+
+void MS4_fromFile(MagicSquare4* square, const char* filePath)
 {
 }

@@ -1,4 +1,7 @@
 #pragma once
+#include <stdlib.h>
+#include <string.h>
+
 #include "Utility.h"
 
 // Matrix of bytes(chars)
@@ -16,5 +19,7 @@ void destroyMatrixC(MatrixC* mat);
 
 void setElementMatrixC(MatrixC* mat, uint32 col, uint32 row, char element);
 char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row);
+
+void fillMatrixC(MatrixC* matDest, MatrixC* matSrc);
 
 void printMatrixC(MatrixC* mat);
