@@ -67,6 +67,7 @@ int main(int argc, char** argv)
 				CLEAR_CONSOLE();
 				printf_s("Please enter the path to the file:\n(MAX: 255 characters, type \"quit\" to exit without loading)\nENTER: ");
 				scanf_s("%s", &filePath, sizeof(char) * 255);
+				clearInputBuffer(); // Don't want to leave garbage behind
 				success = MS4_fromFile(&testSquare, filePath);
 			} while (success == -1 && filePath[0] != 'q' && filePath[1] != 'u' && filePath[2] != 'i' && filePath[2] != 't');
 			
