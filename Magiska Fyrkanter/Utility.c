@@ -36,9 +36,9 @@ Bool isValidCharacter(char character, char* validCharacters)
 char** createCArray2D(uint32 sizex, uint32 sizey)
 {
 	char** warray;
-	warray = (char**)malloc(sizex * sizeof(char*));
+	warray = (char**)calloc(sizex, sizex * sizeof(char*));
 	for (int i = 0; i < sizex; i++)
-		warray[i] = (char*)malloc(sizey * sizeof(char));
+		warray[i] = (char*)calloc(sizey, sizey * sizeof(char));
 	return warray;
 }
 
@@ -81,6 +81,10 @@ char* readFileToStr(const char* path)
 		}
 
 		fclose(file);
+	}
+	else
+	{
+		return NULL;
 	}
 
 	return buffer;

@@ -77,7 +77,7 @@ void MS4_manualFill(MagicSquare4* square)
 			} 
 			while (!MS4_isValidCharacter(input));
 
-			MS4_setSlot(square, col, row, input);
+			MS4_setSlotAndSol(square, col, row, input);
 		}
 	}
 	
@@ -95,36 +95,44 @@ void MS4_fill(MagicSquare4* dest, MatrixC* src)
 	}
 }
 
-void MS4_fromFile(MagicSquare4* square, const char* filePath)
+int MS4_fromFile(MagicSquare4* square, const char* filePath)
 {
 	char* file = readFileToStr(filePath); // Slaps a \0 to the end so we gucci
 
-	// Interpret file
-	uint8 column = 0;
-	uint8 row = 0;
-	for (uint32 counter = 0; file[counter] != '\0'; counter++)
+	if(file != NULL)
 	{
-		char ele = file[counter];
-		
-		// aslong as ele is valid
-		if (MS4_isValidCharacter(ele))
+		// Interpret file
+		uint8 column = 0;
+		uint8 row = 0;
+		for (uint32 counter = 0; file[counter] != '\0'; counter++)
 		{
-			// Its valid, lets enter it!
-			MS4_setSlotAndSol(square, column, row, ele);
+			char ele = file[counter];
 
-			column++;
-			// Col: 0,1,2,3,0,1,2,3
-			if (0 == (column % MAGIC_SQUARE4_SIZE))
+			// aslong as ele is valid
+			if (MS4_isValidCharacter(ele))
 			{
-				column = 0;
-				row++;
-				if (row >= 4)
+				// Its valid, lets enter it!
+				MS4_setSlotAndSol(square, column, row, ele);
+
+				column++;
+				// Col: 0,1,2,3,0,1,2,3
+				if (0 == (column % MAGIC_SQUARE4_SIZE))
 				{
-					// It is done
-					break;
+					column = 0;
+					row++;
+					if (row >= 4)
+					{
+						// It is done
+						break;
+					}
 				}
 			}
 		}
+		return 1;
+	}
+	else
+	{
+		return -1;
 	}
 
 	free(file);

@@ -44,10 +44,13 @@ char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row)
 
 void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
 {
-	// Make sure we are in-bounds
-	if (inRangeMatrixC(matDest, matSrc->nColumns - 1, matSrc->nRows - 1))
-		memcpy(matDest, matSrc, (sizeof(uint32) * 2) + (sizeof(char) * matDest->nColumns * matDest->nRows));
-		//						 nColumns + nRows + the actual matrix
+	for (int col = 0; col < matDest->nColumns; col++)
+	{
+		for (int row = 0; row < matDest->nRows; row++)
+		{
+			setElementMatrixC(matDest, col, row, getElementMatrixC(matSrc, col, row));
+		}
+	}
 }
 
 void printMatrixC(MatrixC* mat)

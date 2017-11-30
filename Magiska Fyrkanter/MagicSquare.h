@@ -89,7 +89,7 @@ void MS4_fill(MagicSquare4* dest, MatrixC* src);
 * @param square The magic square to work on
 * @param filePath The path to the file to read
 */
-void MS4_fromFile(MagicSquare4* square, const char* filePath);
+int MS4_fromFile(MagicSquare4* square, const char* filePath);
 
 /*
 * \brief Checks if a matrix is a valid hexadecimal magic square
