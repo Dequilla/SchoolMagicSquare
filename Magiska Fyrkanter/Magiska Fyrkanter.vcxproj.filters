@@ -40,7 +40,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt">
+    <Text Include="hexkvadranter.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test_fail.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test_Success.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

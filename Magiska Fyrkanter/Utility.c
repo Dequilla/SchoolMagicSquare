@@ -28,9 +28,9 @@ Bool isValidCharacter(char character, char* validCharacters)
 	
 	for (int i = 0; validCharacters[i] != '\0'; i++)
 		if (character == validCharacters[i])
-			return TRUE;
+			return DEQ_TRUE;
 
-	return FALSE;
+	return DEQ_FALSE;
 }
 
 char** createCArray2D(uint32 sizex, uint32 sizey)
@@ -84,4 +84,49 @@ char* readFileToStr(const char* path)
 	}
 
 	return buffer;
+}
+
+int charToInt(char in)
+{
+	if (isdigit(in))
+	{
+		// the char 0 starts at spot 48, so if we remove it from the char
+		// We should according to the C standard get the number
+		// Example: in = '1' = 49
+		//			return 49 - 48 = 1;
+		return in - '0';
+	}
+
+	return -1;
+}
+
+int charhexToInt(char hex)
+{
+	if (isdigit(hex))
+	{
+		return charToInt(hex);
+	}
+	else if (isalpha(hex))
+	{
+		hex = tolower(hex);
+		switch (hex)
+		{
+		case 'a':
+			return 10;
+		case 'b':
+			return 11;
+		case 'c':
+			return 12;
+		case 'd':
+			return 13;
+		case 'e':
+			return 14;
+		case 'f':
+			return 15;
+		}
+	}
+	else
+	{
+		return -1;
+	}
 }

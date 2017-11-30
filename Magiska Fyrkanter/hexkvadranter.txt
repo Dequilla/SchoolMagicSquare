@@ -1,0 +1,11 @@
+f 1 2 c 4 a 9 7 8 6 5 b 3 d e 0
+3 d e 0 8 6 5 b 4 a 9 7 f 1 2 c
+f 2 c 1 4 9 7 a 3 e 0 d 8 5 b 6
+6 b 0 d 1 c 7 a f 2 9 4 8 5 e 3
+8 f 1 6 5 2 c b e 9 7 0 3 4 a d
+3 e 5 8 4 9 2 f a 7 c 1 d 0 b 6
+d a 4 3 0 7 9 e b c 2 5 6 1 f 8
+8 3 4 f 5 e 9 2 b 0 7 c 6 d a 1
+6 b 5 8 d 0 e 3 a 7 9 4 1 c 2 f
+1 a d 6 c 7 0 b 2 9 e 5 f 4 3 8
+f 4 8 3 1 a 6 d 2 9 5 e c 7 b 0

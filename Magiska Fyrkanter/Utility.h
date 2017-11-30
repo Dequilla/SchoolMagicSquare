@@ -20,8 +20,8 @@ typedef char	int8;
 
 typedef enum 
 {
-	FALSE = 0,
-	TRUE = 1
+	DEQ_FALSE = 0,
+	DEQ_TRUE = 1
 } Bool;
 
 
@@ -90,3 +90,17 @@ void destroyCArray2D(char** warray, uint32 sizex);
 * @param path Path to the file that should be read
 */
 char* readFileToStr(const char* path);
+
+/*
+* \brief Interprets a char as a integer
+* IMPORTANT: Only does positive integers, returns -1 on failure
+* @param in The character to be interpreted
+*/
+int charToInt(char in);
+
+/*
+* \brief Interprets a char as a hexadecimal and returns it as a normal integer
+* IMPORTANT: Only does positive integers, returns -1 on failure
+* @param hex The hexadecimal character
+*/
+int charhexToInt(char hex);
