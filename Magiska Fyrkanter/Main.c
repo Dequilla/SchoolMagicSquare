@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 	while (selection != 0)
 	{
 		int success = 0;
-		filePath[3] = 0;
+		filePath[3] = 0; // This is just to make sure loading files doesn't automaticly just quit
 		
 		CLEAR_CONSOLE();
 		printf_s("Welcome to Edwin Wallins magic square program!\n");
