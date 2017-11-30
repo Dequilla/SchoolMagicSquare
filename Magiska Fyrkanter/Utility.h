@@ -1,3 +1,7 @@
+/**
+* @file Utility.h
+* @author Edwin "Dequilla" Wallin
+*/
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 

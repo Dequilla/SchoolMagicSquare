@@ -1,3 +1,7 @@
+/**
+* @file MagicSquare.h
+* @author Edwin "Dequilla" Wallin
+*/
 #pragma once
 #include "Utility.h"
 #include "Matrix.h"
@@ -9,8 +13,8 @@
 // 4x4 magic square
 typedef struct
 {
-	MatrixC slots;	  // Our 4x4 matrix which we work on
-	MatrixC solution; // Our 4x4 matrix recommended solution
+	MatrixC slots;	  /**< Our 4x4 matrix which we work on */
+	MatrixC solution; /**< Our 4x4 matrix recommended solution */
 } MagicSquare4;
 
 /*

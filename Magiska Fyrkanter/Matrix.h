@@ -1,3 +1,7 @@
+/**
+* @file Matrix.h
+* @author Edwin "Dequilla" Wallin
+*/
 #pragma once
 #include <stdlib.h>
 #include <string.h>
@@ -7,9 +11,9 @@
 // Matrix of bytes(chars)
 typedef struct
 {
-	char** matrix;
-	uint32 nColumns;
-	uint32 nRows;
+	char** matrix;	 /**< Our 4x4 matrix which we work on */
+	uint32 nColumns; /**< The number of columns on this matrix */
+	uint32 nRows;    /**< The number of rows on this matrix */
 } MatrixC;
 
 Bool inRangeMatrixC(MatrixC* mat, uint32 col, uint32 row);

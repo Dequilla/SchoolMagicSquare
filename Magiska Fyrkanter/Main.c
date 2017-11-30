@@ -1,3 +1,7 @@
+/**
+* @file Main.c
+* @author Edwin "Dequilla" Wallin
+*/
 #include <stdio.h>
 
 #include "MagicSquare.h"
