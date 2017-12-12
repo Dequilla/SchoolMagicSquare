@@ -9,6 +9,12 @@
 #include <stdio.h>
 #include <ctype.h>
 
+// For access()
+#ifdef __linux__
+#include <unistd.h>
+#elif _WIN32
+#include <io.h>
+#endif
 
 //////////////////////
 // Type definitions
@@ -40,6 +46,12 @@ typedef enum
 #else
 #define CLEAR_CONSOLE() printf("\n\n")
 #endif
+
+/*
+* \brief returns true if specified file exists AND has read and write permissions
+* @param filePath the path to the file
+*/
+Bool fileExists(char* filePath);
 
 /*
 * \brief Clears the input buffer of leftovers

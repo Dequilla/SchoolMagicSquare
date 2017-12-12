@@ -29,7 +29,35 @@ void fillMatrixC(MatrixC* matDest, MatrixC* matSrc);
 
 void printMatrixC(MatrixC* mat);
 
+/*
+* \brief Interprets and sums the specified column as hexadecimal numbers
+* @param mat The matrix to sum
+* @param col The column to sum
+*/
 uint32 sumColumnAsHex(MatrixC* mat, uint32 col);
+
+/*
+* \brief Interprets and sums the specified row as hexadecimal numbers
+* @param mat The matrix to sum
+* @param row The row to sum
+*/
 uint32 sumRowAsHex(MatrixC* mat, uint32 row);
+
+/*
+* \brief Interprets and sums the second diagonal(left to right, top to bottom) as hexadecimal numbers
+* @param mat The matrix to sum
+*/
 uint32 sumMainDiagonalAsHex(MatrixC* mat);
+
+/*
+* \brief Interprets and sums the second diagonal(right to left, top to bottom) as hexadecimal numbers
+* @param mat The matrix to sum
+*/
 uint32 sumSecondDiagonalAsHex(MatrixC* mat);
+
+/*
+* \brief Counts the amount of times char c appears in this matrix
+* @param mat The matrix to count the appearences in
+* @param c The character to look for
+*/
+uint32 countMatrixC(MatrixC* mat, char c);

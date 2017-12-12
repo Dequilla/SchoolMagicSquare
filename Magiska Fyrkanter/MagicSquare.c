@@ -8,6 +8,16 @@ Bool MS4_isValidCharacter(char character)
 	return isValidCharacter(character, validCharacters);
 }
 
+void MS4_init()
+{
+	__MS4_errorString = calloc(MS4_ERROR_STRING_SIZE, sizeof(char) * MS4_ERROR_STRING_SIZE);
+}
+
+void MS4_quit()
+{
+	free(__MS4_errorString);
+}
+
 void MS4_initSquare(MagicSquare4* square)
 {
 	initMatrixC(&square->slots, MAGIC_SQUARE4_SIZE, MAGIC_SQUARE4_SIZE);
@@ -138,28 +148,110 @@ int MS4_fromFile(MagicSquare4* square, const char* filePath)
 	free(file);
 }
 
+void MS4_toString(MagicSquare4* square, char* dest)
+{
+	int counter = 0;
+	for (int col = 0; col < square->slots.nColumns; col++)
+	{
+		for (int row = 0; row < square->slots.nRows; row++)
+		{
+			dest[counter] = MS4_readSlot(square, col, row);
+			counter++;
+
+			if(counter % 5 == 4) // 4, 9, 14
+			{
+				dest[counter] = '|'; // Just for nicer formatting
+				counter++;
+			}
+		}
+	}
+	dest[20] = '\0'; // Finnish string
+}
+
+Bool MS4_toFile(MagicSquare4* square, const char * filePath, Bool overwrite)
+{
+	Bool fileExist = fileExists(filePath);
+
+	if (!overwrite && fileExist)
+	{
+		return DEQ_FALSE;
+	}
+	
+	FILE* file = fopen(filePath, "w");
+
+	if (file != NULL)
+	{
+		char* matrix[20];
+		MS4_toString(square, matrix);
+		fputs(matrix, file);
+		fclose(file);
+	}
+	else
+	{
+		return DEQ_FALSE; // Could not open file
+	}
+
+	return DEQ_TRUE;
+}
+
 Bool MS4_isValidMatrixC(MatrixC* mat)
 {
-	// Checkes if this is a valid magic square matrix
+	// Checks if this is a valid magic square matrix
+
+	// Make sure every character only appears ONCE
+	// For how the for loop work check a ASCII table out
+	for (char test = '1'; test <= '0'; test++)
+	{
+		// If bigger there is too many, if smaller you have a invalid character or an empty spot
+		if (countMatrixC(mat, test) > 1 || countMatrixC(mat, test) < 1)
+		{
+			__MS4_errorString = test + ": Appears too many times."; // Max 49 chars
+			return DEQ_FALSE;
+		}
+	}
+
+	for (char test = 'a'; test <= 'f'; test++)
+	{
+		// If bigger there is too many, if smaller you have a invalid character or an empty spot
+		if (countMatrixC(mat, test) > 1 || countMatrixC(mat, test) < 1)
+		{
+			__MS4_errorString[1] = '\0'; // Reset string
+			__MS4_errorString[0] = test;
+			strcat(__MS4_errorString, ": Appears too many times.");
+			return DEQ_FALSE;
+		}
+	}
 
 	// Diagonals
 	if (sumMainDiagonalAsHex(mat) != 30)
+	{
+		__MS4_errorString = "Main diagonal's sum is too big."; // Max 49 chars
 		return DEQ_FALSE;
+	}
 	if (sumSecondDiagonalAsHex(mat) != 30)
+	{
+		__MS4_errorString = "Second diagonal's sum is too big."; // Max 49 chars
 		return DEQ_FALSE;
+	}
 
 	// Columns
 	for (int col = 0; col < mat->nColumns; col++)
 	{
 		if (sumColumnAsHex(mat, col) != 30)
-			return DEQ_FALSE; // It failed
+		{
+			__MS4_errorString = "One of the columns sum is bigger than 30."; // Max 49 chars
+			return DEQ_FALSE;
+		}
 	}
 
 	// Rows
 	for (int row = 0; row < mat->nRows; row++)
 	{
 		if (sumRowAsHex(mat, row) != 30)
-			return DEQ_FALSE; // It failed
+		{
+			__MS4_errorString = "One of the columns sum is bigger than 30."; // Max 49 chars
+			return DEQ_FALSE;
+		}
 	}
 
 	return DEQ_TRUE; // It passed!
@@ -173,4 +265,9 @@ Bool MS4_isSolved(MagicSquare4* square)
 Bool MS4_solutionIsValid(MagicSquare4* square)
 {
 	return MS4_isValidMatrixC(&square->solution);
+}
+
+char* MS4_getErrorString()
+{
+	return __MS4_errorString;
 }

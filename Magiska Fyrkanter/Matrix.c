@@ -44,6 +44,7 @@ char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row)
 
 void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
 {
+	// Using this doesn't seem to work
 	for (int col = 0; col < matDest->nColumns; col++)
 	{
 		for (int row = 0; row < matDest->nRows; row++)
@@ -56,11 +57,11 @@ void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
 void printMatrixC(MatrixC* mat)
 {
 	printf_s("\n  .-------. \n");
-	for (int col = 0; col < mat->nColumns; col++)
+	for (int row = 0; row < mat->nRows; row++)
 	{
 		printf_s(" | ");
 
-		for (int row = 0; row < mat->nRows; row++)
+		for (int col = 0; col < mat->nColumns; col++)
 		{
 			printf_s("%c ", mat->matrix[col][row]);
 		}
@@ -127,4 +128,19 @@ uint32 sumSecondDiagonalAsHex(MatrixC* mat)
 		}
 	}
 	return result;;
+}
+
+uint32 countMatrixC(MatrixC* mat, char c)
+{
+	uint32 count = 0;
+	for (int y = 0; y < mat->nRows; y++)
+	{
+		for (int x = 0; x < mat->nColumns; x++)
+		{
+			if (getElementMatrixC(mat, x, y) == c)
+				count++;
+		}
+	}
+
+	return count;
 }

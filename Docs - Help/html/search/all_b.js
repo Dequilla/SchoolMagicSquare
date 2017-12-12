@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['savetofile',['saveToFile',['../_main_8c.html#a7554bf2a3868e515fa31dc85670e710b',1,'Main.c']]],
   ['setelementmatrixc',['setElementMatrixC',['../_matrix_8c.html#a95703bb23c42b67aa5109074634d8b59',1,'setElementMatrixC(MatrixC *mat, uint32 col, uint32 row, char element):&#160;Matrix.c'],['../_matrix_8h.html#a95703bb23c42b67aa5109074634d8b59',1,'setElementMatrixC(MatrixC *mat, uint32 col, uint32 row, char element):&#160;Matrix.c']]],
   ['slots',['slots',['../struct_magic_square4.html#ae9c10ac3ed4ad1925f5089c279b273da',1,'MagicSquare4']]],
   ['solution',['solution',['../struct_magic_square4.html#a2b7b9fa3a9e650449afe3f7fee1c7751',1,'MagicSquare4']]],

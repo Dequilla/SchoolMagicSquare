@@ -10,11 +10,14 @@
 
 #define MAGIC_SQUARE4_SIZE 4
 
+#define MS4_ERROR_STRING_SIZE 50
+char* __MS4_errorString;
+
 // 4x4 magic square
 typedef struct
 {
-	MatrixC slots;	  /**< Our 4x4 matrix which we work on */
-	MatrixC solution; /**< Our 4x4 matrix recommended solution */
+	MatrixC slots;	    /**< Our 4x4 matrix which we work on */
+	MatrixC solution;   /**< Our 4x4 matrix recommended solution */
 } MagicSquare4;
 
 /*
@@ -24,6 +27,16 @@ typedef struct
 * @param character The char to check
 */
 Bool MS4_isValidCharacter(char character);
+
+/*
+* \brief Initializes our library
+*/
+void MS4_init();
+
+/*
+* \brief Properly destroys resources when quitting program
+*/
+void MS4_quit();
 
 /*
 * \brief Initializes a magic square(4x4 matrix)
@@ -96,6 +109,22 @@ void MS4_fill(MagicSquare4* dest, MatrixC* src);
 int MS4_fromFile(MagicSquare4* square, const char* filePath);
 
 /*
+* \brief Converts a square into a string format
+* FORMAT: 0000|0000|0000|0000 There for string needs 20 spots (including the \0)
+* @param square The square to transform
+* @param dest The destination string
+*/
+void MS4_toString(MagicSquare4* square, char* dest);
+
+/*
+* \brief Saves a magic square to a file(returns DEQ_FALSE on failure)
+* @param square The magic square to save
+* @param filePath The path where to save the file
+* @param overwrite Wether or not to overwrite a file IF it exists
+*/
+Bool MS4_toFile(MagicSquare4* square, const char* filePath, Bool overwrite);
+
+/*
 * \brief Checks if a matrix is a valid hexadecimal magic square
 * @param mat The matrix to check
 */
@@ -112,3 +141,10 @@ Bool MS4_isSolved(MagicSquare4* square);
 * @param square The square to check
 */
 Bool MS4_solutionIsValid(MagicSquare4* square);
+
+/*
+* \brief Returns the latest error as a C string
+* Sort of redundant but having a function is a bit prettier for this particular usecase
+* in my own honest opinion
+*/
+char* MS4_getErrorString();

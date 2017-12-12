@@ -1,5 +1,17 @@
 #include "Utility.h"
 
+Bool fileExists(char * filePath)
+{
+// returns 0 on success which equals false so lets reverse that
+#ifdef _WIN32
+	return !_access(filePath, 6);
+#elif __linux__
+	return !access(filePath, R_OK | W_OK);
+#else
+	return DEQ_FALSE;
+#endif
+}
+
 void clearInputBuffer(void)
 {
 	int c;
