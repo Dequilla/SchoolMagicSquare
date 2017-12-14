@@ -3,6 +3,7 @@
 * @author Edwin "Dequilla" Wallin
 */
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include "Utility.h"
 #include "Matrix.h"
 
@@ -11,7 +12,7 @@
 #define MAGIC_SQUARE4_SIZE 4
 
 #define MS4_ERROR_STRING_SIZE 50
-char* __MS4_errorString;
+char* __MS4_errorString;  /**< Used internally, please refer to function MS4_getErrorString(), MS4_init() and MS4_quit() */
 
 // 4x4 magic square
 typedef struct
@@ -31,12 +32,12 @@ Bool MS4_isValidCharacter(char character);
 /*
 * \brief Initializes our library
 */
-void MS4_init();
+void MS4_init(void);
 
 /*
 * \brief Properly destroys resources when quitting program
 */
-void MS4_quit();
+void MS4_quit(void);
 
 /*
 * \brief Initializes a magic square(4x4 matrix)
@@ -77,6 +78,14 @@ void MS4_setSlotAndSol(MagicSquare4* square, uint8 posx, uint8 posy, char slot);
 char MS4_readSlot(MagicSquare4* square, uint8 posx, uint8 posy);
 
 /*
+* \brief Reads and returns a character in solution [posx][posy] on success, '?' on failure
+* @param square The magic square to work on
+* @param posx The column to act upon (0 - 3)
+* @param posy The row to act upon (0 - 3)
+*/
+char MS4_readSol(MagicSquare4* square, uint8 posx, uint8 posy);
+
+/*
 * \brief Prints our magic square
 * @param square The magic square to work on
 */
@@ -102,11 +111,11 @@ void MS4_manualFill(MagicSquare4* square);
 void MS4_fill(MagicSquare4* dest, MatrixC* src);
 
 /*
-* \brief Reads magic square from file(only reads one of the squares, if  you have multiple it is the last one)
+* \brief Reads magic square from file(only reads one of the squares, if you have multiple it is the last one)
 * @param square The magic square to work on
 * @param filePath The path to the file to read
 */
-int MS4_fromFile(MagicSquare4* square, const char* filePath);
+Bool MS4_fromFile(MagicSquare4* square, const char* filePath);
 
 /*
 * \brief Converts a square into a string format
@@ -147,4 +156,4 @@ Bool MS4_solutionIsValid(MagicSquare4* square);
 * Sort of redundant but having a function is a bit prettier for this particular usecase
 * in my own honest opinion
 */
-char* MS4_getErrorString();
+char* MS4_getErrorString(void);

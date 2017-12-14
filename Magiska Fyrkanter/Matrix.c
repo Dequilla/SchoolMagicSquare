@@ -25,12 +25,14 @@ void destroyMatrixC(MatrixC* mat)
 	destroyCArray2D(mat->matrix, mat->nColumns);
 }
 
-void setElementMatrixC(MatrixC* mat, uint32 col, uint32 row, char element)
+Bool setElementMatrixC(MatrixC* mat, uint32 col, uint32 row, char element)
 {
 	if(inRangeMatrixC(mat, col, row))
 	{
 		mat->matrix[col][row] = element;
+		return DEQ_TRUE;
 	}
+	return DEQ_FALSE;
 }
 
 char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row)
@@ -39,15 +41,15 @@ char getElementMatrixC(MatrixC* mat, uint32 col, uint32 row)
 	{
 		return mat->matrix[col][row];
 	}
-	return '?';
+	return -1;
 }
 
 void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
 {
 	// Using this doesn't seem to work
-	for (int col = 0; col < matDest->nColumns; col++)
+	for (int row = 0; row < matDest->nRows; row++)
 	{
-		for (int row = 0; row < matDest->nRows; row++)
+		for (int col = 0; col < matDest->nColumns; col++)
 		{
 			setElementMatrixC(matDest, col, row, getElementMatrixC(matSrc, col, row));
 		}
@@ -56,20 +58,20 @@ void fillMatrixC(MatrixC* matDest, MatrixC* matSrc)
 
 void printMatrixC(MatrixC* mat)
 {
-	printf_s("\n  .-------. \n");
+	printf("\n  .-------. \n");
 	for (int row = 0; row < mat->nRows; row++)
 	{
-		printf_s(" | ");
+		printf(" | ");
 
 		for (int col = 0; col < mat->nColumns; col++)
 		{
-			printf_s("%c ", mat->matrix[col][row]);
+			printf("%c ", mat->matrix[col][row]);
 		}
 
-		printf_s("| \n");
+		printf("| \n");
 	}
 
-	printf_s("  '-------' \n\n");
+	printf("  '-------' \n\n");
 }
 
 uint32 sumColumnAsHex(MatrixC* mat, uint32 col)

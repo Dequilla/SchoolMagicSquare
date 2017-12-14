@@ -1,5 +1,15 @@
 #include "Utility.h"
 
+void intToStr(char* dest, int src)
+{
+	sprintf(dest, "%d", src);
+}
+
+int32 randomInt(int32 min, int32 max)
+{
+	return rand() % (max - min + 1) + min;
+}
+
 Bool fileExists(char * filePath)
 {
 // returns 0 on success which equals false so lets reverse that

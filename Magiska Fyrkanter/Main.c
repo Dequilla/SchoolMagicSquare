@@ -2,9 +2,12 @@
 * @file Main.c
 * @author Edwin "Dequilla" Wallin
 */
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 
 #include "MagicSquare.h"
+#include "Game.h"	
 
 /////////////////////
 // Menu Functions
@@ -13,12 +16,15 @@ void manualFill(MagicSquare4* main);
 void saveToFile(MagicSquare4* main);
 void readFromFile(MagicSquare4* main);
 void playGame(MagicSquare4* main);
+void loadRandomSquare(MagicSquare4* main);
 void printFAQ(void);
+void printMenu(void);
 
 int main(int argc, char** argv)
 {
-	// TODO: ALSO ADD SAVE TO FILE FEATURE'
-	// TODO: Move every menu item into functions
+	// TODO: Go through comments och finslipa min kod, vill inte ha onödiga kommentarer
+	// TODO: Lägga till kommentarer för alla funktioner (beskrivningar etc)
+	// TODO: Om det finns tid, lägg till bool returns där de går att få fram fel på vissa funktioner
 
 	MS4_init();
 
@@ -30,18 +36,10 @@ int main(int argc, char** argv)
 	{
 		
 		CLEAR_CONSOLE();
-		printf_s("Welcome to Edwin Wallins magic square program!\n");
-		printf_s("Please choose what you want to do: (Select by entering a valid number)\n");
-		printf_s("1. Enter a magic square manually.\n");
-		printf_s("2. Save magic square to file.\n");
-		printf_s("3. Read magic square from file.\n");
-		printf_s("4. Play magic square game.\n");
-		printf_s("5. Print currently loaded square.\n");
-		printf_s("6. FAQ - What is a magic square?\n");
-		printf_s("0. Quit!\n");
-		printf_s("ENTER: ");
-		scanf_s("%d", &selection);
-		clearInputBuffer(); // Don't want to leave garbage behind
+		printMenu();
+		printf("ENTER: ");
+		scanf("%d", &selection);
+		clearInputBuffer();
 
 		switch (selection)
 		{
@@ -59,17 +57,20 @@ int main(int argc, char** argv)
 			break;
 		case 5:
 			CLEAR_CONSOLE();
-			printf_s("Your currently loaded magic square: \n");
+			printf("Your currently loaded magic square: \n");
 			MS4_printSquare(&mainSquare);
-			system("PAUSE");
+			PAUSE_CONSOLE();
 			break;
 		case 6:
+			loadRandomSquare(&mainSquare);
+			break;
+		case 7:
 			printFAQ();
 			break;
 		case 0: break;
 		default:
-			printf_s("Invalid selection -> ");
-			system("PAUSE");
+			printf("Invalid selection -> ");
+			PAUSE_CONSOLE();
 		}
 	}
 
@@ -92,8 +93,9 @@ void manualFill(MagicSquare4* main)
 	}
 	else
 	{
-		printf_s("Invalid square. Please retry.\n");
-		system("PAUSE");
+		printf("Invalid square. Please retry.\n");
+		printf("ERROR: %s\n", MS4_getErrorString());
+		PAUSE_CONSOLE();
 	}
 
 	MS4_destroySquare(&testSquare);
@@ -103,31 +105,37 @@ void saveToFile(MagicSquare4* main)
 {
 	CLEAR_CONSOLE();
 	char filePath[256] = "";
-	char overwrite = 'n';
-	Bool doOverwrite = DEQ_FALSE;
+	char cOverwrite = 'n';
+	Bool bOverwrite = DEQ_FALSE;
 	Bool success = DEQ_TRUE;
 
 	do
 	{
-		// TODO: Make sure it is a valid magic square(load to copy, don't overload mainSquare)
 		CLEAR_CONSOLE();
+		
+
+		printf("Please enter the path to save to:\n(MAX: 255 characters, type \"quit\" to exit without saving)\nENTER: ");
+		scanf("%s", &filePath);
+		clearInputBuffer();
+
+		if (filePath[0] == 'q' && filePath[1] == 'u' && filePath[2] == 'i' && filePath[3] == 't')
+			break;
+
+		printf("Do you want to overwrite \"%s\" if it exists?(Write y or Y for yes)\nENTER: ", filePath);
+		scanf("%c", &cOverwrite);
+		clearInputBuffer(); 
+
+		bOverwrite = (tolower(cOverwrite) == 'y');
+
+		MS4_toFile(main, filePath, bOverwrite);
 		if (!success)
-			printf_s("Failed saving, either path is taken or file could not open.\n");
+		{
+			printf("Failed saving, either the path is taken or file could not open.\n");
+			PAUSE_CONSOLE();
+		}
+	} while (success == DEQ_FALSE);
 
-		printf_s("Please enter the path to save to:\n(MAX: 255 characters, type \"quit\" to exit without saving)\nENTER: ");
-		scanf_s("%s", &filePath, sizeof(char) * 255);
-		clearInputBuffer(); // Don't want to leave garbage behind
-
-		printf_s("Do you want to overwrite the file if it exists?(Write y or Y for yes)\nENTER: ");
-		scanf_s("%c", &overwrite);
-		clearInputBuffer(); // Don't want to leave garbage behind
-
-		doOverwrite = (tolower(overwrite) == 'y');
-
-		success = MS4_toFile(main, filePath, doOverwrite);
-	} while (success == DEQ_FALSE && filePath[0] != 'q' && filePath[1] != 'u' && filePath[2] != 'i' && filePath[2] != 't');
-
-	system("PAUSE");
+	PAUSE_CONSOLE();
 }
 
 void readFromFile(MagicSquare4* main)
@@ -138,26 +146,30 @@ void readFromFile(MagicSquare4* main)
 
 	char filePath[256] = "";
 	
-	int success = 0;
+	Bool success = DEQ_FALSE;
 
 	do
 	{
-		// TODO: Make sure it is a valid magic square(load to copy, don't overload mainSquare)
 		CLEAR_CONSOLE();
-		printf_s("Please enter the path to the file:\n(MAX: 255 characters, type \"quit\" to exit without loading)\nENTER: ");
-		scanf_s("%s", &filePath, sizeof(char) * 255);
-		clearInputBuffer(); // Don't want to leave garbage behind
+		printf("Please enter the path to the file:\n(MAX: 255 characters, type \"quit\" to exit without loading)\nENTER: ");
+		scanf("%s", &filePath);
+		clearInputBuffer();
+
+		if (filePath[0] == 'q' && filePath[1] == 'u' && filePath[2] == 'i' && filePath[3] == 't')
+			break;
+
 		success = MS4_fromFile(&testSquare, filePath);
-	} while (success == -1 && filePath[0] != 'q' && filePath[1] != 'u' && filePath[2] != 'i' && filePath[2] != 't');
+	} while (success == DEQ_FALSE);
 
 	if (MS4_solutionIsValid(&testSquare))
 	{
 		MS4_fill(main, &testSquare.slots);
 	}
-	else
+	else if(filePath[0] != 'q' && filePath[1] != 'u' && filePath[2] != 'i' && filePath[3] != 't')
 	{
-		printf_s("Invalid square. Please load another file.\n");
-		system("PAUSE");
+		printf("Invalid square. Please load another file.\n");
+		printf("ERROR: %s\n", MS4_getErrorString());
+		PAUSE_CONSOLE();
 	}
 
 	MS4_destroySquare(&testSquare);
@@ -166,24 +178,72 @@ void readFromFile(MagicSquare4* main)
 void playGame(MagicSquare4* main)
 {
 	CLEAR_CONSOLE();
-	printf_s("Too be implemented.\n");
-	system("PAUSE");
+	MS4_gameStart(main);
+}
+
+void loadRandomSquare(MagicSquare4* main)
+{
+	// Loads a random square from our squares folder
+	MagicSquare4 testSquare;
+	MS4_initSquare(&testSquare);
+
+	uint8 squareNumber = randomInt(1, 11);
+
+	char* path[20];
+	char* number[21];
+	intToStr(number, squareNumber);
+	
+	path[0] = '\0';
+	strcat(path, "squares/sq");
+	strcat(path, number);
+	strcat(path, ".txt");
+
+	MS4_fromFile(&testSquare, path);
+	
+	if (MS4_solutionIsValid(&testSquare))
+	{
+		MS4_fill(main, &testSquare.slots);
+
+		printf("Loaded random square successfully!\n");
+		PAUSE_CONSOLE();
+	}
+	else
+	{
+		printf("Failed to load a random square!\n");
+		PAUSE_CONSOLE();
+	}
+
+	MS4_destroySquare(&testSquare);
 }
 
 void printFAQ(void)
 {
 	CLEAR_CONSOLE();
-	printf_s(" --------------------- FAQ --------------------- \n");
-	printf_s(" Q: What is a magic square? \n");
-	printf_s(" A: A magic square is a square of which every\n");
-	printf_s("    hexadecimal number only appears once and \n");
-	printf_s("    where the columns, rows and long diagonals\n");
-	printf_s("    are each summed to 30.\n");
-	printf_s(" Q: What kind of magic square is this?\n");
-	printf_s(" A: This program only supports 4x4 squares.\n");
-	printf_s(" Q: Who made this?\n");
-	printf_s(" A: A genius by the name of Edwin \"Dequilla\" Wallin.\n");
-	printf_s("    (If a program says it, it must be true!)\n");
-	printf_s(" --------------------- FAQ --------------------- \n");
-	system("PAUSE");
+	printf(" --------------------- FAQ --------------------- \n");
+	printf(" Q: What is a magic square? \n");
+	printf(" A: A magic square is a square of which every\n");
+	printf("    hexadecimal number only appears once and \n");
+	printf("    where the columns, rows and long diagonals\n");
+	printf("    are each summed to 30.\n");
+	printf(" Q: What kind of magic square is this?\n");
+	printf(" A: This program only supports 4x4 squares.\n");
+	printf(" Q: Who made this?\n");
+	printf(" A: A genius by the name of Edwin \"Dequilla\" Wallin.\n");
+	printf("    (If a program says it, it must be true!)\n");
+	printf(" --------------------- FAQ --------------------- \n");
+	PAUSE_CONSOLE();
+}
+
+void printMenu(void)
+{
+	printf("Welcome to Edwin Wallins magic square program!\n");
+	printf("Please choose what you want to do: (Select by entering a valid number)\n");
+	printf("1. Enter a magic square manually.\n");
+	printf("2. Save magic square to file.\n");
+	printf("3. Read magic square from file.\n");
+	printf("4. Play magic square game.\n");
+	printf("5. Print currently loaded square.\n");
+	printf("6. Load a random square.\n");
+	printf("7. FAQ - What is a magic square?\n");
+	printf("0. Quit!\n");
 }

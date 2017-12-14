@@ -8,12 +8,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <math.h>
+#include <time.h>
 
-// For access()
+// For access() and sleep()
 #ifdef __linux__
 #include <unistd.h>
 #elif _WIN32
 #include <io.h>
+#include <Windows.h>
 #endif
 
 //////////////////////
@@ -47,8 +50,33 @@ typedef enum
 #define CLEAR_CONSOLE() printf("\n\n")
 #endif
 
+#define PAUSE_CONSOLE() printf("Press \"Enter\" to continue..."); while(getchar() != '\n')
+
+#ifdef _WIN32
+#define SLEEP_CONSOLE(seconds) Sleep(seconds * 1000)
+#elif __linux__
+#define SLEEP_CONSOLE(seconds) sleep(seconds)
+#else
+#define SLEEP_CONSOLE(seconds) // Do nothing
+#endif
+
 /*
-* \brief returns true if specified file exists AND has read and write permissions
+* \brief converts a int into a string
+* IMPORTANT: Make sure the string you send in is longer than atleast 21 characters
+* @param dest Destination string
+* @param src Source integer
+*/
+void intToStr(char* dest, int src);
+
+/*
+* \brief Returns a random integer between min and max
+* @param min Minimum value
+* @param max Maximum value
+*/
+int32 randomInt(int32 min, int32 max);
+
+/*
+* \brief Returns true if specified file exists AND has read and write permissions
 * @param filePath the path to the file
 */
 Bool fileExists(char* filePath);

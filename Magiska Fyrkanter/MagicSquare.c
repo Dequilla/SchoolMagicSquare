@@ -8,12 +8,13 @@ Bool MS4_isValidCharacter(char character)
 	return isValidCharacter(character, validCharacters);
 }
 
-void MS4_init()
+void MS4_init(void)
 {
+	srand(time(NULL)); // Seed rand
 	__MS4_errorString = calloc(MS4_ERROR_STRING_SIZE, sizeof(char) * MS4_ERROR_STRING_SIZE);
 }
 
-void MS4_quit()
+void MS4_quit(void)
 {
 	free(__MS4_errorString);
 }
@@ -32,16 +33,14 @@ void MS4_destroySquare(MagicSquare4* square)
 
 void MS4_setSlot(MagicSquare4* square, uint8 posx, uint8 posy, char slot)
 {
-	// already makes sure it is within range through our matrix type
 	if (MS4_isValidCharacter(slot))
 	{
 		setElementMatrixC(&square->slots, posx, posy, slot);
 	}
 }
 
-void MS4_setSlotAndSol(MagicSquare4 * square, uint8 posx, uint8 posy, char slot)
+void MS4_setSlotAndSol(MagicSquare4* square, uint8 posx, uint8 posy, char slot)
 {
-	// already makes sure it is within range through our matrix type
 	if (MS4_isValidCharacter(slot))
 	{
 		setElementMatrixC(&square->slots, posx, posy, slot);
@@ -51,17 +50,24 @@ void MS4_setSlotAndSol(MagicSquare4 * square, uint8 posx, uint8 posy, char slot)
 
 char MS4_readSlot(MagicSquare4* square, uint8 posx, uint8 posy)
 {
-	// already makes sure it is within range through our matrix type
 	return getElementMatrixC(&square->slots, posx, posy);
+}
+
+char MS4_readSol(MagicSquare4 * square, uint8 posx, uint8 posy)
+{
+	return getElementMatrixC(&square->solution, posx, posy);
 }
 
 void MS4_printSquare(MagicSquare4* square)
 {
+	printf("Magic Square: ");
+	printf("\n0-9 and -> A = 10, B = 11, C = 12, D = 13, E = 14, F = 15\n");
 	printMatrixC(&square->slots);
 }
 
 void MS4_printSolution(MagicSquare4* square)
 {
+	printf("Magic Square recommended solution: ");
 	printMatrixC(&square->solution);
 }
 
@@ -78,12 +84,12 @@ void MS4_manualFill(MagicSquare4* square)
 
 				MS4_printSquare(square);
 
-				printf_s("Please enter appropriate hex-number(0-F)\nfor column %d, row %d: ", col + 1, row + 1);
-				scanf_s("%c", &input);
+				printf("Please enter appropriate hex-number(0-F)\nfor column %d, row %d: ", col + 1, row + 1);
+				scanf("%c", &input);
 				clearInputBuffer();
 
 				if (!MS4_isValidCharacter(input))
-					printf_s("Invalid input!\n");
+					printf("Invalid input!\n");
 			} 
 			while (!MS4_isValidCharacter(input));
 
@@ -97,7 +103,6 @@ void MS4_manualFill(MagicSquare4* square)
 
 void MS4_fill(MagicSquare4* dest, MatrixC* src)
 {
-	// Make sure size is valid
 	if (inRangeMatrixC(src, dest->slots.nColumns - 1, dest->slots.nRows - 1))
 	{
 		fillMatrixC(&dest->slots, src);
@@ -105,9 +110,9 @@ void MS4_fill(MagicSquare4* dest, MatrixC* src)
 	}
 }
 
-int MS4_fromFile(MagicSquare4* square, const char* filePath)
+Bool MS4_fromFile(MagicSquare4* square, const char* filePath)
 {
-	char* file = readFileToStr(filePath); // Slaps a \0 to the end so we gucci
+	char* file = readFileToStr(filePath);
 
 	if(file != NULL)
 	{
@@ -118,19 +123,18 @@ int MS4_fromFile(MagicSquare4* square, const char* filePath)
 		{
 			char ele = file[counter];
 
-			// aslong as ele is valid
 			if (MS4_isValidCharacter(ele))
 			{
-				// Its valid, lets enter it!
 				MS4_setSlotAndSol(square, column, row, ele);
 
-				column++;
+				row++;
+
 				// Col: 0,1,2,3,0,1,2,3
-				if (0 == (column % MAGIC_SQUARE4_SIZE))
+				if (0 == (row % MAGIC_SQUARE4_SIZE))
 				{
-					column = 0;
-					row++;
-					if (row >= 4)
+					row = 0;
+					column++;
+					if (column >= 4)
 					{
 						// It is done
 						break;
@@ -138,14 +142,14 @@ int MS4_fromFile(MagicSquare4* square, const char* filePath)
 				}
 			}
 		}
-		return 1;
+		free(file);
+		return DEQ_TRUE;
 	}
 	else
 	{
-		return -1;
+		free(file);
+		return DEQ_FALSE;
 	}
-
-	free(file);
 }
 
 void MS4_toString(MagicSquare4* square, char* dest)
@@ -158,14 +162,14 @@ void MS4_toString(MagicSquare4* square, char* dest)
 			dest[counter] = MS4_readSlot(square, col, row);
 			counter++;
 
-			if(counter % 5 == 4) // 4, 9, 14
+			if(counter % 5 == 4 && counter != 19) // 4, 9, 14
 			{
 				dest[counter] = '|'; // Just for nicer formatting
 				counter++;
 			}
 		}
 	}
-	dest[20] = '\0'; // Finnish string
+	dest[19] = '\0'; // Finnish string
 }
 
 Bool MS4_toFile(MagicSquare4* square, const char * filePath, Bool overwrite)
@@ -199,25 +203,27 @@ Bool MS4_isValidMatrixC(MatrixC* mat)
 	// Checks if this is a valid magic square matrix
 
 	// Make sure every character only appears ONCE
-	// For how the for loop work check a ASCII table out
-	for (char test = '1'; test <= '0'; test++)
+	// For how the for-loop works check a ASCII table out
+	for (char test = '0'; test <= '9'; test++)
 	{
-		// If bigger there is too many, if smaller you have a invalid character or an empty spot
+		// Handles both if too many and too little
 		if (countMatrixC(mat, test) > 1 || countMatrixC(mat, test) < 1)
 		{
-			__MS4_errorString = test + ": Appears too many times."; // Max 49 chars
+			__MS4_errorString[1] = '\0'; // Reset string
+			__MS4_errorString[0] = test;
+			strcat(__MS4_errorString, " <- Appears too many or too few times.");
 			return DEQ_FALSE;
 		}
 	}
 
 	for (char test = 'a'; test <= 'f'; test++)
 	{
-		// If bigger there is too many, if smaller you have a invalid character or an empty spot
+		// Handles both if too many and too little
 		if (countMatrixC(mat, test) > 1 || countMatrixC(mat, test) < 1)
 		{
 			__MS4_errorString[1] = '\0'; // Reset string
 			__MS4_errorString[0] = test;
-			strcat(__MS4_errorString, ": Appears too many times.");
+			strcat(__MS4_errorString, " <- Appears too many or too few times.");
 			return DEQ_FALSE;
 		}
 	}
@@ -225,12 +231,14 @@ Bool MS4_isValidMatrixC(MatrixC* mat)
 	// Diagonals
 	if (sumMainDiagonalAsHex(mat) != 30)
 	{
-		__MS4_errorString = "Main diagonal's sum is too big."; // Max 49 chars
+		__MS4_errorString[0] = '\0'; // Reset string
+		strcat(__MS4_errorString, "Main diagonal's sum is too big."); // Max 49 chars
 		return DEQ_FALSE;
 	}
 	if (sumSecondDiagonalAsHex(mat) != 30)
 	{
-		__MS4_errorString = "Second diagonal's sum is too big."; // Max 49 chars
+		__MS4_errorString[0] = '\0'; // Reset string
+		strcat(__MS4_errorString, "Second diagonal's sum is too big."); // Max 49 chars
 		return DEQ_FALSE;
 	}
 
@@ -239,7 +247,8 @@ Bool MS4_isValidMatrixC(MatrixC* mat)
 	{
 		if (sumColumnAsHex(mat, col) != 30)
 		{
-			__MS4_errorString = "One of the columns sum is bigger than 30."; // Max 49 chars
+			__MS4_errorString[0] = '\0'; // Reset string
+			strcat(__MS4_errorString, "One of the columns sum is bigger than 30."); // Max 49 chars
 			return DEQ_FALSE;
 		}
 	}
@@ -249,7 +258,8 @@ Bool MS4_isValidMatrixC(MatrixC* mat)
 	{
 		if (sumRowAsHex(mat, row) != 30)
 		{
-			__MS4_errorString = "One of the columns sum is bigger than 30."; // Max 49 chars
+			__MS4_errorString[0] = '\0'; // Reset string
+			strcat(__MS4_errorString, "One of the rows sum is bigger than 30."); // Max 49 chars
 			return DEQ_FALSE;
 		}
 	}
@@ -267,7 +277,7 @@ Bool MS4_solutionIsValid(MagicSquare4* square)
 	return MS4_isValidMatrixC(&square->solution);
 }
 
-char* MS4_getErrorString()
+char* MS4_getErrorString(void)
 {
 	return __MS4_errorString;
 }
