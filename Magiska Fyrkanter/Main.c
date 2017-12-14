@@ -22,10 +22,6 @@ void printMenu(void);
 
 int main(int argc, char** argv)
 {
-	// TODO: Go through comments och finslipa min kod, vill inte ha onödiga kommentarer
-	// TODO: Lägga till kommentarer för alla funktioner (beskrivningar etc)
-	// TODO: Om det finns tid, lägg till bool returns där de går att få fram fel på vissa funktioner
-
 	MS4_init();
 
 	MagicSquare4 mainSquare;
