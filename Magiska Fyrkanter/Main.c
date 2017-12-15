@@ -8,6 +8,7 @@
 
 #include "MagicSquare.h"
 #include "Game.h"	
+#include "MSCreate.h"
 
 /////////////////////
 // Menu Functions
@@ -18,8 +19,13 @@ void readFromFile(MagicSquare4* main);
 void playGame(MagicSquare4* main);
 void loadRandomSquare(MagicSquare4* main);
 void printFAQ(void);
+void createMagicSquares(void);
 void printMenu(void);
 
+
+/////////////////////
+// Main Entry Point
+/////////////////////
 int main(int argc, char** argv)
 {
 	MS4_init();
@@ -62,6 +68,9 @@ int main(int argc, char** argv)
 			break;
 		case 7:
 			printFAQ();
+			break;
+		case 8:
+			createMagicSquares();
 			break;
 		case 0: break;
 		default:
@@ -230,6 +239,20 @@ void printFAQ(void)
 	PAUSE_CONSOLE();
 }
 
+void createMagicSquares(void)
+{
+	// Icke-obligatorisk uppgift för 4-5
+	// Gå ett steg på vägen för att skapa magiska fyrkanter
+	int nrOfRows;
+	char** result = createHexRows(MAGIC_SQUARE4_SIZE, 30, &nrOfRows);
+
+	CLEAR_CONSOLE();
+	printf("The number of permuations: %d", nrOfRows);
+	PAUSE_CONSOLE();
+
+	destroyCArray2D(result, nrOfRows);
+}
+
 void printMenu(void)
 {
 	printf("Welcome to Edwin Wallins magic square program!\n");
@@ -241,5 +264,6 @@ void printMenu(void)
 	printf("5. Print currently loaded square.\n");
 	printf("6. Load a random square.\n");
 	printf("7. FAQ - What is a magic square?\n");
+	printf("8. !Did Not Finnish! - Create parts of magic squares - Extra\n");
 	printf("0. Quit!\n");
 }

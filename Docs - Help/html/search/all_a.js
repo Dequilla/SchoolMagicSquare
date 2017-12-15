@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['readfiletostr',['readFileToStr',['../_utility_8c.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c'],['../_utility_8h.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c']]],
-  ['readfromfile',['readFromFile',['../_main_8c.html#a028b11547113acce8fcd0a4d4388f532',1,'Main.c']]]
+  ['ncolumns',['nColumns',['../struct_matrix_c.html#ac62735ec16b2351fa167594da983363d',1,'MatrixC']]],
+  ['nrows',['nRows',['../struct_matrix_c.html#a02592f44bf8410c77e0a1163edff9fbd',1,'MatrixC']]]
 ];

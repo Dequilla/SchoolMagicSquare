@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fileexists',['fileExists',['../_utility_8c.html#a7d9b72049687cc8a91e10f25ea86d04f',1,'fileExists(char *filePath):&#160;Utility.c'],['../_utility_8h.html#a7d9b72049687cc8a91e10f25ea86d04f',1,'fileExists(char *filePath):&#160;Utility.c']]],
-  ['fillmatrixc',['fillMatrixC',['../_matrix_8c.html#ae787fc6324f75723fea6bd8a14f6fb0b',1,'fillMatrixC(MatrixC *matDest, MatrixC *matSrc):&#160;Matrix.c'],['../_matrix_8h.html#ae787fc6324f75723fea6bd8a14f6fb0b',1,'fillMatrixC(MatrixC *matDest, MatrixC *matSrc):&#160;Matrix.c']]]
+  ['existhexrow',['existHexRow',['../_m_s_create_8c.html#a1413e0b0bca798cf7037786f89d56e60',1,'existHexRow(char *row, uint32 length, char **array2D, uint32 array2DLength):&#160;MSCreate.c'],['../_m_s_create_8h.html#a1413e0b0bca798cf7037786f89d56e60',1,'existHexRow(char *row, uint32 length, char **array2D, uint32 array2DLength):&#160;MSCreate.c']]]
 ];

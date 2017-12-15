@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['initmatrixc',['initMatrixC',['../_matrix_8c.html#a8ac05493b1a28f8e27df0ebae915304d',1,'initMatrixC(MatrixC *mat, uint32 nColumns, uint32 nRows):&#160;Matrix.c'],['../_matrix_8h.html#a8ac05493b1a28f8e27df0ebae915304d',1,'initMatrixC(MatrixC *mat, uint32 nColumns, uint32 nRows):&#160;Matrix.c']]],
-  ['inrangematrixc',['inRangeMatrixC',['../_matrix_8c.html#aacc45a12f834ce12f7758c84ad0d7ff9',1,'inRangeMatrixC(MatrixC *mat, uint32 col, uint32 row):&#160;Matrix.c'],['../_matrix_8h.html#aacc45a12f834ce12f7758c84ad0d7ff9',1,'inRangeMatrixC(MatrixC *mat, uint32 col, uint32 row):&#160;Matrix.c']]],
-  ['issquarematrixc',['isSquareMatrixC',['../_matrix_8c.html#a4a3113a034ae215b3edf5e907c13f2f5',1,'isSquareMatrixC(MatrixC *mat):&#160;Matrix.c'],['../_matrix_8h.html#a4a3113a034ae215b3edf5e907c13f2f5',1,'isSquareMatrixC(MatrixC *mat):&#160;Matrix.c']]],
-  ['isvalidcharacter',['isValidCharacter',['../_utility_8c.html#a14982fc5f0fe662e69fe3b8aea8db3f9',1,'isValidCharacter(char character, char *validCharacters):&#160;Utility.c'],['../_utility_8h.html#a14982fc5f0fe662e69fe3b8aea8db3f9',1,'isValidCharacter(char character, char *validCharacters):&#160;Utility.c']]]
+  ['getelementmatrixc',['getElementMatrixC',['../_matrix_8c.html#a8108d4b3f3613b325cb56fd651436cdf',1,'getElementMatrixC(MatrixC *mat, uint32 col, uint32 row):&#160;Matrix.c'],['../_matrix_8h.html#a8108d4b3f3613b325cb56fd651436cdf',1,'getElementMatrixC(MatrixC *mat, uint32 col, uint32 row):&#160;Matrix.c']]]
 ];

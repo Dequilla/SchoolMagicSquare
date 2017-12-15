@@ -37,7 +37,6 @@ typedef enum
 	DEQ_TRUE = 1
 } Bool;
 
-
 //////////////////////
 // Helper functions
 //////////////////////
@@ -129,6 +128,16 @@ char** createCArray2D(uint32 sizex, uint32 sizey); // Create one not based on ty
 void destroyCArray2D(char** warray, uint32 sizex);
 
 /*
+* \brief Copies src to dest
+* IMPORTANT: It is fine if dest is bigger than src but not the other way around
+* @param dest Destination array
+* @param src Source array
+* @param nrCols Number of columns in src
+* @param nrRows Number of rows in src
+*/
+void copyCArray2D(char** dest, char** src, uint32 nrCols, uint32 nrRows);
+
+/*
 * \brief Reads a file into a c-styled string ending with \0
 * IMPORTANT: Don't forget to free() the returned char* when you are done with it.
 * @param path Path to the file that should be read
@@ -148,3 +157,11 @@ int charToInt(char in);
 * @param hex The hexadecimal character
 */
 int charhexToInt(char hex);
+
+/*
+* \brief converts an integer to a hexadecimal number
+* Supports from 0-15 only, returns '?' on failure
+* @param i The integer to convert
+*/
+char intToHex(uint8 i);
+

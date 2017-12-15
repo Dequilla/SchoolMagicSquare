@@ -122,12 +122,14 @@
     <ClCompile Include="MagicSquare.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Matrix.c" />
+    <ClCompile Include="MSCreate.c" />
     <ClCompile Include="Utility.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="MagicSquare.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MSCreate.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>

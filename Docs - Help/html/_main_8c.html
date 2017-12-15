@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Main.c File Reference</div>  </div>
@@ -73,9 +74,16 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_magic_square_8h_source.html">MagicSquare.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_8h_source.html">Game.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_m_s_create_8h_source.html">MSCreate.h</a>&quot;</code><br />
 </div>
 <p><a href="_main_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af08ec37a8c99d747fb60fa15bc28678b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#af08ec37a8c99d747fb60fa15bc28678b">_CRT_SECURE_NO_WARNINGS</a></td></tr>
+<tr class="separator:af08ec37a8c99d747fb60fa15bc28678b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:adeb2147d8aff943b16cb4ed99989bea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#adeb2147d8aff943b16cb4ed99989bea6">manualFill</a> (<a class="el" href="struct_magic_square4.html">MagicSquare4</a> *<a class="el" href="_main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>)</td></tr>
@@ -86,8 +94,14 @@ Functions</h2></td></tr>
 <tr class="separator:a028b11547113acce8fcd0a4d4388f532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a046e7d60fd7828725a8a5216495bb57a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#a046e7d60fd7828725a8a5216495bb57a">playGame</a> (<a class="el" href="struct_magic_square4.html">MagicSquare4</a> *<a class="el" href="_main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>)</td></tr>
 <tr class="separator:a046e7d60fd7828725a8a5216495bb57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20bf580d5a162d1c37c24190d0af076a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#a20bf580d5a162d1c37c24190d0af076a">loadRandomSquare</a> (<a class="el" href="struct_magic_square4.html">MagicSquare4</a> *<a class="el" href="_main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>)</td></tr>
+<tr class="separator:a20bf580d5a162d1c37c24190d0af076a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354deaeed7163a03da69a0290c661d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#a354deaeed7163a03da69a0290c661d2a">printFAQ</a> (void)</td></tr>
 <tr class="separator:a354deaeed7163a03da69a0290c661d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26710f9678730306b6c807add8688071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#a26710f9678730306b6c807add8688071">createMagicSquares</a> (void)</td></tr>
+<tr class="separator:a26710f9678730306b6c807add8688071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d0f0ce9c3289b4bd6ecfae02494b2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#ad0d0f0ce9c3289b4bd6ecfae02494b2f">printMenu</a> (void)</td></tr>
+<tr class="separator:ad0d0f0ce9c3289b4bd6ecfae02494b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -95,7 +109,64 @@ Functions</h2></td></tr>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Edwin "Dequilla" Wallin </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="af08ec37a8c99d747fb60fa15bc28678b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08ec37a8c99d747fb60fa15bc28678b">&#9670;&nbsp;</a></span>_CRT_SECURE_NO_WARNINGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _CRT_SECURE_NO_WARNINGS</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00005">5</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a26710f9678730306b6c807add8688071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26710f9678730306b6c807add8688071">&#9670;&nbsp;</a></span>createMagicSquares()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void createMagicSquares </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00242">242</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+
+</div>
+</div>
+<a id="a20bf580d5a162d1c37c24190d0af076a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bf580d5a162d1c37c24190d0af076a">&#9670;&nbsp;</a></span>loadRandomSquare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loadRandomSquare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_magic_square4.html">MagicSquare4</a> *&#160;</td>
+          <td class="paramname"><em>main</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00189">189</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+
+</div>
+</div>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -122,7 +193,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00018">18</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00029">29</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>
@@ -142,7 +213,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00081">81</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00087">87</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>
@@ -162,7 +233,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00166">166</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00183">183</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>
@@ -182,7 +253,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00173">173</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00224">224</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+
+</div>
+</div>
+<a id="ad0d0f0ce9c3289b4bd6ecfae02494b2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d0f0ce9c3289b4bd6ecfae02494b2f">&#9670;&nbsp;</a></span>printMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printMenu </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00256">256</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>
@@ -202,7 +293,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00133">133</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00146">146</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>
@@ -222,7 +313,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00102">102</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8c_source.html#l00109">109</a> of file <a class="el" href="_main_8c_source.html">Main.c</a>.</p>
 
 </div>
 </div>

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['uint16',['uint16',['../_utility_8h.html#a05f6b0ae8f6a6e135b0e290c25fe0e4e',1,'Utility.h']]],
-  ['uint32',['uint32',['../_utility_8h.html#a1134b580f8da4de94ca6b1de4d37975e',1,'Utility.h']]],
-  ['uint8',['uint8',['../_utility_8h.html#adde6aaee8457bee49c2a92621fe22b79',1,'Utility.h']]],
-  ['utility_2ec',['Utility.c',['../_utility_8c.html',1,'']]],
-  ['utility_2eh',['Utility.h',['../_utility_8h.html',1,'']]]
+  ['randomint',['randomInt',['../_utility_8c.html#a235c3cf26e84adffec093da257c5ae1e',1,'randomInt(int32 min, int32 max):&#160;Utility.c'],['../_utility_8h.html#a235c3cf26e84adffec093da257c5ae1e',1,'randomInt(int32 min, int32 max):&#160;Utility.c']]],
+  ['readfiletostr',['readFileToStr',['../_utility_8c.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c'],['../_utility_8h.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c']]],
+  ['readfromfile',['readFromFile',['../_main_8c.html#a028b11547113acce8fcd0a4d4388f532',1,'Main.c']]]
 ];

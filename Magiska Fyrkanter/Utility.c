@@ -71,6 +71,17 @@ void destroyCArray2D(char** warray, uint32 sizex)
 	free(warray);
 }
 
+void copyCArray2D(char** dest, char** src, uint32 nrCols, uint32 nrRows)
+{
+	for (int col = 0; col < nrCols; col++)
+	{
+		for (int row = 0; row < nrRows; row++)
+		{
+			dest[col][row] = src[col][row];
+		}
+	}
+}
+
 char* readFileToStr(const char* path)
 {
 	char* buffer = 0;
@@ -129,30 +140,23 @@ int charToInt(char in)
 int charhexToInt(char hex)
 {
 	if (isdigit(hex))
-	{
-		return charToInt(hex);
-	}
-	else if (isalpha(hex))
-	{
-		hex = tolower(hex);
-		switch (hex)
-		{
-		case 'a':
-			return 10;
-		case 'b':
-			return 11;
-		case 'c':
-			return 12;
-		case 'd':
-			return 13;
-		case 'e':
-			return 14;
-		case 'f':
-			return 15;
-		}
-	}
+		return hex - '0'; // Ex med ’1’ = 49 i ASCII: 49 – 48 = 1  
+	else if (isalpha(hex) && tolower(hex) >= 'a' && tolower(hex) <= 'f')
+		return hex - 'a' + 10; // Ex med ’b’ = 98 i ASCII: 98 – 97 + 10 = 11
+	
+	return -1;
+}
+
+char intToHex(uint8 i)
+{
+	if (i > 15 || i < 0)
+		return '?';
 	else
 	{
-		return -1;
+		
+		if (i < 10) // 0-9
+			return '0' + i; // 0 is at 48: ex: i = 5; 48 + 5 = 53 = '5'
+		else if (i > 9) // 10-15
+			return 'a' + (i - 10); // a is at 97: ex: i = 13; 97 + (13 - 10) = 97 + 3 = 100 = 'd'
 	}
 }

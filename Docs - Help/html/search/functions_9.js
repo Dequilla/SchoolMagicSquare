@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['withinrange1d',['withinRange1D',['../_utility_8c.html#aafd0205ab23cdff6e430b4b74e0df4fe',1,'withinRange1D(uint32 posx, uint32 range):&#160;Utility.c'],['../_utility_8h.html#aafd0205ab23cdff6e430b4b74e0df4fe',1,'withinRange1D(uint32 posx, uint32 range):&#160;Utility.c']]],
-  ['withinrange2d',['withinRange2D',['../_utility_8c.html#a6cb9ce288e574cb25a5bea9b5e3f5e4c',1,'withinRange2D(uint32 posx, uint32 posy, uint32 range):&#160;Utility.c'],['../_utility_8h.html#a6cb9ce288e574cb25a5bea9b5e3f5e4c',1,'withinRange2D(uint32 posx, uint32 posy, uint32 range):&#160;Utility.c']]]
+  ['randomint',['randomInt',['../_utility_8c.html#a235c3cf26e84adffec093da257c5ae1e',1,'randomInt(int32 min, int32 max):&#160;Utility.c'],['../_utility_8h.html#a235c3cf26e84adffec093da257c5ae1e',1,'randomInt(int32 min, int32 max):&#160;Utility.c']]],
+  ['readfiletostr',['readFileToStr',['../_utility_8c.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c'],['../_utility_8h.html#a0e54be03839de6f7c7877627a4a3e46d',1,'readFileToStr(const char *path):&#160;Utility.c']]],
+  ['readfromfile',['readFromFile',['../_main_8c.html#a028b11547113acce8fcd0a4d4388f532',1,'Main.c']]]
 ];
