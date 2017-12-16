@@ -112,7 +112,11 @@ char* readFileToStr(const char* path)
 			fread(buffer, sizeof(char), length, file);
 			buffer[length] = '\0';
 		}
-
+		else
+		{
+			fclose(file);
+			return NULL;
+		}
 		fclose(file);
 	}
 	else

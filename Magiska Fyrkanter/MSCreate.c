@@ -5,22 +5,21 @@ char** createHexRows(int n, int sum, int* nrOfRows)
 	*nrOfRows = 0;
 	char** result = createCArray2D(n, 1000);
 
-	// let each slot have their own "part" of 16 so x1 = 0-3; x2 = 4-7; x3 = 8-11; x4 = 12-15;
+	// IDEA: (does not work) let each slot have their own "part" of 16 so x1 = 0-3; x2 = 4-7; x3 = 8-11; x4 = 12-15;
 	// This means we ONLY get permutations and not combinations
-	for (int x1 = 0; x1 < 4; x1++)
+	for (int x1 = 0; x1 < 16; x1++)
 	{
-		for (int x2 = 4; x2 < 8; x2++)
+		for (int x2 = 0; x2 < 16; x2++)
 		{
-			for (int x3 = 8; x3 < 12; x3++)
+			for (int x3 = 0; x3 < 16; x3++)
 			{
-				for (int x4 = 12; x4 < 16; x4++)
+				for (int x4 = 0; x4 < 16; x4++)
 				{
 					// is it 30?
 					if ((x1 + x2 + x3 + x4) == sum)
 					{
-						// We know for a face that it can't already exist because of how 
-						// Our for loops are structured and that the same number
-						// Cannot exist more than once
+						// TODO: check if a version of this already exists
+
 						char row[4];
 						row[0] = intToHex(x1);
 						row[1] = intToHex(x2);
